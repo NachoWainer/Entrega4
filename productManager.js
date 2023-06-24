@@ -21,8 +21,8 @@ export class ProductManager{
         title, description, code, price, status, stock, category, thumbnail
         )=>{
             if (!isNaN(title)||!isNaN(description)||!isNaN(category)||!isNaN(code))return {status:412,message:"Los campos: title, description , code y category deben ser texto",value:[]};
-            if (title === undefined || title.replace(/\s/g, '') === "" || description.replace(/\s/g, '') === "" ||description === undefined || 
-                category.replace(/\s/g, '') === ""|| category === undefined || price === undefined || code.replace(/\s/g, '') === ""|| code === undefined || stock === undefined) {
+            if (title === undefined || title.includes(' ') || description.includes(' ') ||description === undefined || 
+                category.includes(' ')|| category === undefined || price === undefined || code.includes(' ')|| code === undefined || stock === undefined) {
                 return {status:412,message:"Los productos a agregar deben incluir 7 campos no vacíos: title, description, price, code, stock. El campo thumbnail es opcional",value:[]};
             }
             if (status === undefined) status = true
@@ -100,8 +100,8 @@ export class ProductManager{
             "thumbnail" === prop || "code" === prop || "stock" === prop
             || "category" === prop || "status" === prop){
             if (("stock"===prop && isNaN(value)) || ("stock"===prop && Number(value) === null) || ("price"===prop && isNaN(value)) || ("price"===prop && Number(value) === null)) return {stats:412,message:"Los campos: price y stock deben ser numeros",value:[]};
-            if (("title"===prop && !isNaN(value)) || ("title"===prop && value.replace(/\s/g, '') === "") || ("description"===prop && !isNaN(value)) || ("description"===prop && value.replace(/\s/g, '') === "")
-            || ("code"===prop && !isNaN(value)) || ("code"===prop && value.replace(/\s/g, '') === "")) return {stats:412,message:"Los campos: title description y code deben ser textos no vacíos",value:[]}; 
+            if (("title"===prop && !isNaN(value)) || ("title"===prop && value.includes(' ')) || ("description"===prop && !isNaN(value)) || ("description"===prop && value.includes(' '))
+            || ("code"===prop && !isNaN(value)) || ("code"===prop && value.includes(' '))) return {stats:412,message:"Los campos: title description y code deben ser textos no vacíos",value:[]}; 
             try {
                 const data =await  fs.promises.readFile(this.path,'utf-8')
         

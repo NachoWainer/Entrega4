@@ -48,5 +48,15 @@
 		"status": true,
 		"stock": 33,
 		"category": "category"
+	},
+	{
+		"id": 6,
+		"title": "Producto5",
+		"description": "description",
+		"code": "124abcdefgjh",
+		"price": 200,
+		"status": true,
+		"stock": 33,
+		"category": "category"
 	}
 ]
